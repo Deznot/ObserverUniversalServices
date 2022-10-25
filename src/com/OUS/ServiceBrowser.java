@@ -6,6 +6,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.rmi.*;
 import java.awt.event.*;
+import java.rmi.registry.*;
 
 public class ServiceBrowser {
     JPanel mainPanel;
@@ -44,7 +45,9 @@ public class ServiceBrowser {
         Object obj = null;
         Object[] services = null;
         try {
-            obj = Naming.lookup("rmi://127.0.0.1/ServiceServer");//find stub in RMI
+            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 8010);
+            //Get the reference of exported object from RMI Registry
+            obj = registry.lookup("ServiceServer");
         }catch(Exception ex) {
             System.out.println("getService error get obj");
             ex.printStackTrace();
