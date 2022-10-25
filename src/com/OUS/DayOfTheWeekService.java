@@ -44,7 +44,7 @@ public class DayOfTheWeekService implements Service {
             int yearNum = Integer.parseInt(year.getText());
             System.out.println("year" + yearNum);
 
-            Calendar calendar = new GregorianCalendar(yearNum, monthNum,dayNum);
+            Calendar calendar = new GregorianCalendar(yearNum, monthNum, dayNum);
             System.out.println(calendar.getTime());
             Date date = calendar.getTime();
             String dayOfWeek = (new SimpleDateFormat("EEEE")).format(date);
