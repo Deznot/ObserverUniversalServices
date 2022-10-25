@@ -3,20 +3,18 @@ package com.OUS;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.util.*;
-
-import javax.xml.transform.SourceLocator;
-
 import com.OUS.ServiceServer;
+import java.rmi.registry.*;
 
 public class ServiceServerImpl extends UnicastRemoteObject implements ServiceServer {
-    HashMap servicesList;
+    HashMap<String,Service> serviceList;
     public ServiceServerImpl() throws RemoteException {
         setUpServices();
     }
     private void setUpServices() {
-        servicesList = new HashMap<String,Service>();
+        serviceList = new HashMap<String,Service>();
         serviceList.put("Dice Rolling Service", new DiceService());
-        serviceList.put("Day of the Week Service", new DatOfTheWeekService());
+        serviceList.put("Day of the Week Service", new DayOfTheWeekService());
         serviceList.put("Visual Mysic Service", new MiniMusicService());
     }
 
@@ -26,15 +24,20 @@ public class ServiceServerImpl extends UnicastRemoteObject implements ServiceSer
     }
 
     public Service getService(Object serviceKey) throws RemoteException {
-        Service theSerivce = (Service) servicesList.get(serviceKey);
+        Service theSerivce = (Service) serviceList.get(serviceKey);
         return theSerivce;
     }
 
     public static void main(String[] args) {
+        final String UNIQUE_BINDING_NAME = "ServiceServer";
         try {
-            Naming.rebind("ServiceServer", new ServiceServerImpl());
+            Registry registry = LocateRegistry.createRegistry(8010);
+            registry.rebind(UNIQUE_BINDING_NAME, new ServiceServerImpl());
+            System.out.println("export and binding of objects has been completed");
         }catch(Exception ex) {
-            System.out.println(ex.printStackTrace());
+            System.out.println("ServiceServer Error...");
+            ex.printStackTrace();
         }
     }
 }
+
