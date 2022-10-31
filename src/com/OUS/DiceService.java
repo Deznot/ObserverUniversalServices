@@ -128,14 +128,13 @@ public class DiceService implements Service {
             if (num == 6) // middle left dot
                 g.fillOval(x+10, y+38, 20, 20);
             if (num % 2 == 1) // middle dot (for odd-numbered)
-                g.fillOval(x+38, y+38, 20, 20);a
+                g.fillOval(x+38, y+38, 20, 20);
             if (num == 6) // middle right dot
                 g.fillOval(x+70, y+38, 20, 20);
             if (num > 3)  // bottom left dot
                 g.fillOval(x+10, y+70, 20, 20);
             if (num > 1)  // bottom right dot
                 g.fillOval(x+70, y+70, 20,20);
-
         }
     }
 
