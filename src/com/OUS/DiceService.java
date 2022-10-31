@@ -43,6 +43,7 @@ public class DiceService implements Service {
             int numOfDiceToRoll = Integer.parseInt(selection);
             rectList.removeAll(rectList);
             drawPanel.repaint();
+<<<<<<< HEAD
             int x = 0, y = 10, dx = 10, w = 100, h = 100;
             for (int i = 0; i < numOfDiceToRoll; i++) {
                 int r = (int) ((Math.random() * 6) + 1);
@@ -57,6 +58,27 @@ public class DiceService implements Service {
                     x += 100 + dx;
                 }
                 myRectangle rect = new myRectangle(x, y, w, h, r);
+=======
+            int x=0,y=10,dx=0;
+            for (int i = 0; i < numOfDiceToRoll; i++) {
+                int r = (int) ((Math.random() * 6) + 1);
+                System.out.println("x+100 " + ((x+100)));
+                System.out.println("Width " + (drawPanel.getWidth()));
+                System.out.println((x+100) > drawPanel.getWidth());
+                if (i == 0) {
+                    x = 5;
+                }else if ((x+100) > drawPanel.getWidth()) {
+                    x = 5;
+                    y += 110;
+                    //k = 100 * i;
+                } else {
+                    x += 110;
+                }
+
+                System.out.println("x " + x);
+                System.out.println((i) + "------------------- ");
+                myRectangle rect = new myRectangle(x,y,100,100, r);
+>>>>>>> cfeb0167cb426738daa965a23c8cd0e112c14977
                 rectList.add(rect);
                 diceOutput += (" " + r);
             }
@@ -101,6 +123,12 @@ public class DiceService implements Service {
         public int getHeight() {
             return h;
         }
+<<<<<<< HEAD
+=======
+        public int getBounds() {
+            return 10;
+        }
+>>>>>>> cfeb0167cb426738daa965a23c8cd0e112c14977
         public void draw(Graphics g) {
             Graphics2D g2 = (Graphics2D) g;
             g2.setFont(new Font("SabsSerif", Font.PLAIN, 10));
@@ -110,6 +138,10 @@ public class DiceService implements Service {
             g2.fill(new Rectangle(x, y, w, h));
             g2.setColor(Color.black);
             g2.draw(new Rectangle(x, y, w, h));
+<<<<<<< HEAD
+=======
+            //System.out.println(" "+ x + " "+y);
+>>>>>>> cfeb0167cb426738daa965a23c8cd0e112c14977
         }
     }
 
@@ -117,9 +149,30 @@ public class DiceService implements Service {
         DiceService ds = new DiceService();
         JFrame frame = new JFrame();
         frame.getContentPane().add(ds.getGuiPanel());
+<<<<<<< HEAD
+=======
+        //frame.getContentPane().add();
+>>>>>>> cfeb0167cb426738daa965a23c8cd0e112c14977
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500,500);
         frame.setVisible(true);
 
     }
+<<<<<<< HEAD
 }
+=======
+}
+
+
+// public void animate() {
+//     // При ударе о край кружок отскакивает.
+    // Rectangle bounds = getBounds();
+//     if ((x - r + dx < 0) || (x + r + dx > bounds.width)) dx = -dx;
+//     if ((y - r + dy < 0) || (y + r + dy > bounds.height)) dy = -dy;
+//     // Перемещаем кружок.
+//     x += dx; y += dy;
+//     // Просим броузер вызвать метод paint() для перерисовывания кружка 
+//     // на новом месте.
+//     repaint();
+//     }
+>>>>>>> cfeb0167cb426738daa965a23c8cd0e112c14977
