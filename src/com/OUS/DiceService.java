@@ -82,7 +82,7 @@ public class DiceService implements Service {
         public void draw(Graphics g);
     }
 
-    static class myRectangle implements GraphShape{
+    class myRectangle implements GraphShape{
         int x;
         int y;
         int w;
@@ -120,6 +120,5 @@ public class DiceService implements Service {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500,500);
         frame.setVisible(true);
-
     }
 }
