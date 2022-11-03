@@ -2,9 +2,8 @@ package com.OUS;
 
 import com.OUS.Service;
 import javax.swing.*;
-
+import javax.swing.plaf.DimensionUIResource;
 import org.w3c.dom.css.RGBColor;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.ImageObserver;
@@ -16,8 +15,10 @@ public class DiceService implements Service {
     JComboBox numOfDice;
     MyDrawPanel drawPanel;
     ArrayList<myRectangle> rectList = new ArrayList<myRectangle>();
+    JPanel mainPanel;
+
     public JPanel getGuiPanel(){
-        JPanel mainPanel = new JPanel();
+        mainPanel = new JPanel();
         JPanel panel = new JPanel();
         JButton button = new JButton("Roll 'em ");
         String[] choices = {"1","2","3","4","5","7","8","9"};
@@ -43,7 +44,7 @@ public class DiceService implements Service {
             rectList.removeAll(rectList);
             drawPanel.repaint();
 
-            int x = 0, y = 10, dx = 10, w = 100, h = 100;
+            int x = 0, y = 15, dx = 10, w = 100, h = 100, dw = 0, dh = 0;
             for (int i = 0; i < numOfDiceToRoll; i++) {
                 int r = (int) ((Math.random() * 6) + 1);
                 if (i == 0) {
@@ -136,14 +137,5 @@ public class DiceService implements Service {
             if (num > 1)  // bottom right dot
                 g.fillOval(x+70, y+70, 20,20);
         }
-    }
-
-    public static void main(String[] args) {
-        DiceService ds = new DiceService();
-        JFrame frame = new JFrame();
-        frame.getContentPane().add(ds.getGuiPanel());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500,500);
-        frame.setVisible(true);
     }
 }
